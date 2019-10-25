@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe KeysController, type: :controller do
-  describe 'POST /keys/' do
+RSpec.describe Applications::KeysController, type: :controller do
+  describe 'POST applications/keys/' do
     let(:json_response) { JSON.parse(response.body, symbolize_names: true) }
 
     context 'generated rsa private key' do

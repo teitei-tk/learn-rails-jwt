@@ -1,3 +1,5 @@
 Rails.application.routes.draw do
-  post 'keys/', to: 'keys#create'
+  namespace :applications do
+    post 'keys/', to: 'keys#create'
+  end
 end
