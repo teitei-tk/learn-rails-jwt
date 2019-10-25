@@ -1,5 +1,14 @@
 inherit_from: .rubocop_todo.yml
 
+Style/FrozenStringLiteralComment:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Style/TrailingCommaInHashLiteral:
+  Enabled: false
+
 require: rubocop-rails
 
 AllCops:
