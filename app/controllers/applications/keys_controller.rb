@@ -9,9 +9,9 @@ module Applications
         current_application.save!
       end
 
-      render json: {
+      render json: Applications::Keys::CreatePresenter.new(
         private_key: rsa_keys[:private_key]
-      }
+      )
     end
   end
 end
