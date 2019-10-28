@@ -9,6 +9,10 @@ Style/Documentation:
 Style/TrailingCommaInHashLiteral:
   Enabled: false
 
+Metrics/BlockLength:
+  Exclude:
+    - "spec/**/*"
+
 require: rubocop-rails
 
 AllCops:

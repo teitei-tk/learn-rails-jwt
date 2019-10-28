@@ -27,5 +27,14 @@ RSpec.describe Applications::KeysController, type: :controller do
         expect(application.public_key).to eq(app.public_key)
       end
     end
+
+    context 'application not found' do
+      before do
+        post :create, params: { id: 1 }
+      end
+
+      it { expect(response.status).to eq(404) }
+      it { expect(json_response).to eq(ProblemDetails::Document.new(status: 404).to_h) }
+    end
   end
 end
