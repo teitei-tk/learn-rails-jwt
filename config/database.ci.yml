@@ -1,0 +1,18 @@
+default: &default
+  adapter: mysql2
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  charset: utf8mb4
+  collation: utf8mb4_bin
+  encoding: utf8mb4
+  username: root
+  password: root
+
+development:
+  <<: *default
+  database: learn_rails_jwt_development
+test:
+  <<: *default
+  database: learn_rails_jwt_test
+production:
+  <<: *default
+  database: learn_rails_jwt_production

@@ -1,0 +1,33 @@
+name: Ruby
+
+on: [push]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: MySQL 5.7 Dependency
+        run: |
+          sudo apt-get install mysql-client libmysqlclient-dev
+      - name: Set up Ruby 2.6.x
+        uses: actions/setup-ruby@v1
+        with:
+          version: 2.6.x
+      - name: Setup Gemfiles
+        run: |
+          gem install bundler
+          bundle install --path vendor/bundle
+      - name: Setup Database
+        run: |
+          cp config/database.ci.yml config/database.yml
+          bin/rake db:create
+          bin/rake db:schema:load
+        env:
+          RAILS_ENV: test
+      - name: rubocop
+        run: bundle exec rubocop
+      - name: rspec
+        env:
+          RAILS_ENV: test
+        run: bundle exec rspec
